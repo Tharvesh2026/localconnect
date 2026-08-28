@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   signal,
 } from '@angular/core';
@@ -68,6 +69,29 @@ import {LocalStorage} from '../../services/local-storage';
               <mat-icon class="text-lg">person_add</mat-icon>
               <span>{{ t().navRegister }}</span>
             </a>
+
+            @if (loggedInWorker(); as worker) {
+              <a
+                id="desktop-nav-worker"
+                routerLink="/worker-dashboard"
+                routerLinkActive="bg-[#F0F0E8] text-[#1A1A1A] font-bold"
+                class="px-3.5 py-2 rounded-xl text-sm font-medium text-[#5A5A40] hover:text-[#1A1A1A] hover:bg-[#F0F0E8] transition-colors flex items-center gap-1.5 cursor-pointer"
+              >
+                <mat-icon class="text-lg">badge</mat-icon>
+                <span>{{ t().navWorkerDashboard }}</span>
+                <span class="w-2 h-2 rounded-full bg-[#1E7E34]"></span>
+              </a>
+            } @else {
+              <a
+                id="desktop-nav-worker"
+                routerLink="/worker-login"
+                routerLinkActive="bg-[#F0F0E8] text-[#1A1A1A] font-bold"
+                class="px-3.5 py-2 rounded-xl text-sm font-medium text-[#5A5A40] hover:text-[#1A1A1A] hover:bg-[#F0F0E8] transition-colors flex items-center gap-1.5 cursor-pointer"
+              >
+                <mat-icon class="text-lg">badge</mat-icon>
+                <span>{{ t().navWorkerLogin }}</span>
+              </a>
+            }
 
             <a
               id="desktop-nav-admin"
@@ -168,6 +192,33 @@ import {LocalStorage} from '../../services/local-storage';
               <span>{{ t().navRegister }}</span>
             </a>
 
+            @if (loggedInWorker(); as worker) {
+              <a
+                id="mobile-nav-worker"
+                routerLink="/worker-dashboard"
+                (click)="closeMobileMenu()"
+                routerLinkActive="bg-[#F0F0E8] text-[#1A1A1A] font-bold"
+                class="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-[#5A5A40] hover:bg-[#F0F0E8] hover:text-[#1A1A1A] cursor-pointer"
+              >
+                <div class="flex items-center gap-3">
+                  <mat-icon class="text-[#5A5A40]">badge</mat-icon>
+                  <span>{{ t().navWorkerDashboard }} ({{ worker.fullName }})</span>
+                </div>
+                <span class="w-2 h-2 rounded-full bg-[#1E7E34]"></span>
+              </a>
+            } @else {
+              <a
+                id="mobile-nav-worker"
+                routerLink="/worker-login"
+                (click)="closeMobileMenu()"
+                routerLinkActive="bg-[#F0F0E8] text-[#1A1A1A] font-bold"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[#5A5A40] hover:bg-[#F0F0E8] hover:text-[#1A1A1A] cursor-pointer"
+              >
+                <mat-icon class="text-[#5A5A40]">badge</mat-icon>
+                <span>{{ t().navWorkerLogin }}</span>
+              </a>
+            }
+
             <a
               id="mobile-nav-admin"
               routerLink="/admin"
@@ -203,6 +254,7 @@ export class Header {
 
   readonly t = () => this.translation.t();
   readonly mobileMenuOpen = signal<boolean>(false);
+  readonly loggedInWorker = computed(() => this.storage.loggedInProvider());
 
   readonly pendingCount = () => this.storage.pendingProviders().length;
 

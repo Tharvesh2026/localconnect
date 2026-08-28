@@ -1,6 +1,27 @@
 <div class="min-h-screen flex flex-col bg-[#F5F5F0] text-[#1A1A1A]">
   <app-header />
   
+  @if (storage.firestoreError()) {
+    <div
+      id="firestore-error-banner"
+      class="bg-[#FFF4E5] border-b border-[#F59E0B]/30 px-4 py-2.5 text-xs text-[#B45309] transition-all"
+    >
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <mat-icon class="text-base text-[#B45309]">cloud_off</mat-icon>
+          <span class="font-medium">{{ storage.firestoreError() }}</span>
+        </div>
+        <button
+          type="button"
+          (click)="storage.clearError()"
+          class="text-xs font-bold underline hover:opacity-80 cursor-pointer px-2 py-0.5"
+        >
+          Dismiss
+        </button>
+      </div>
+    </div>
+  }
+
   <main class="flex-1">
     <router-outlet />
   </main>

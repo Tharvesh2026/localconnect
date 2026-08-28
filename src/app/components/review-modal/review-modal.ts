@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   input,
   output,
@@ -14,7 +15,7 @@ import {
 } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {DatePipe} from '@angular/common';
-import {Provider, Review} from '../../models/provider.model';
+import {Provider} from '../../models/provider.model';
 import {LocalStorage} from '../../services/local-storage';
 import {Translation} from '../../services/translation';
 
@@ -259,39 +260,30 @@ export class ReviewModal {
     comment: new FormControl(''),
   });
 
-  readonly reviews = signal<Review[]>([]);
-
-  constructor() {
-    // Initial fetch of reviews
-    setTimeout(() => {
-      this.refreshReviews();
-    }, 0);
-  }
+  readonly reviews = computed(() => this.storage.getReviewsForProvider(this.provider().id));
 
   refreshReviews(): void {
-    const provId = this.provider().id;
-    this.reviews.set(this.storage.getReviewsForProvider(provId));
+    // Computed automatically reacts to real-time Firestore updates
   }
 
   setRating(rating: number): void {
     this.selectedRating.set(rating);
   }
 
-  submitReview(): void {
+  async submitReview(): Promise<void> {
     this.submitted.set(true);
     if (this.selectedRating() === 0 || this.reviewForm.invalid) {
       return;
     }
 
     const {reviewerName, comment} = this.reviewForm.value;
-    this.storage.addReview(
+    await this.storage.addReview(
       this.provider().id,
       this.selectedRating(),
       comment || '',
       reviewerName || 'Village Resident'
     );
 
-    this.refreshReviews();
     this.showSuccessMessage.set(true);
     this.reviewForm.reset();
     this.submitted.set(false);

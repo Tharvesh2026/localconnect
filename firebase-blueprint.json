@@ -1,0 +1,162 @@
+{
+  "entities": {
+    "Provider": {
+      "title": "Provider",
+      "description": "Local skilled service worker",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full name of the worker",
+          "maxLength": 100
+        },
+        "photoUrl": {
+          "type": "string",
+          "description": "Photo URL or SVG avatar"
+        },
+        "phone": {
+          "type": "string",
+          "description": "10-digit mobile number",
+          "maxLength": 20
+        },
+        "skill": {
+          "type": "string",
+          "description": "Primary skilled trade",
+          "maxLength": 50
+        },
+        "customSkill": {
+          "type": "string",
+          "description": "Custom skill specification if Other",
+          "maxLength": 50
+        },
+        "location": {
+          "type": "string",
+          "description": "Village or town location",
+          "maxLength": 100
+        },
+        "availability": {
+          "type": "string",
+          "description": "Current availability window",
+          "enum": ["Available Now", "Available Today", "Available This Week"]
+        },
+        "status": {
+          "type": "string",
+          "description": "Verification status",
+          "enum": ["pending", "approved", "rejected"]
+        },
+        "isVisible": {
+          "type": "boolean",
+          "description": "Public directory visibility"
+        },
+        "bio": {
+          "type": "string",
+          "description": "Short bio or service description",
+          "maxLength": 500
+        },
+        "experienceYears": {
+          "type": "number",
+          "description": "Years of experience"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        },
+        "approvedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Approval timestamp"
+        },
+        "averageRating": {
+          "type": "number",
+          "description": "Average review rating"
+        },
+        "reviewCount": {
+          "type": "number",
+          "description": "Total review count"
+        }
+      },
+      "required": ["name", "phone", "skill", "location", "availability", "status", "isVisible"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Community resident review and rating",
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "type": "string",
+          "description": "Target provider document reference ID",
+          "maxLength": 128
+        },
+        "rating": {
+          "type": "number",
+          "description": "Rating score between 1 and 5"
+        },
+        "comment": {
+          "type": "string",
+          "description": "Feedback comment",
+          "maxLength": 1000
+        },
+        "reviewerName": {
+          "type": "string",
+          "description": "Name of reviewer",
+          "maxLength": 100
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Review submission timestamp"
+        }
+      },
+      "required": ["providerId", "rating"]
+    },
+    "OtpSession": {
+      "title": "OtpSession",
+      "description": "Temporary simulated OTP login session",
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "description": "Target phone number",
+          "maxLength": 20
+        },
+        "otp": {
+          "type": "string",
+          "description": "4-digit verification code",
+          "maxLength": 10
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Session creation timestamp"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Session expiration timestamp"
+        }
+      },
+      "required": ["phone", "otp"]
+    }
+  },
+  "firestore": {
+    "/providers/{providerId}": {
+      "schema": {
+        "$ref": "#/entities/Provider"
+      },
+      "description": "Collection of community service providers"
+    },
+    "/reviews/{reviewId}": {
+      "schema": {
+        "$ref": "#/entities/Review"
+      },
+      "description": "Collection of community reviews"
+    },
+    "/otpSessions/{sessionId}": {
+      "schema": {
+        "$ref": "#/entities/OtpSession"
+      },
+      "description": "Collection of temporary OTP login sessions"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Providers collection: readable by public, writable for registration, updates, admin actions
+    match /providers/{providerId} {
+      allow read: if true;
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.phone is string
+                    && request.resource.data.skill is string
+                    && request.resource.data.location is string;
+      allow update, delete: if true;
+    }
+
+    // Reviews collection: readable by public, writable by village residents
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if request.resource.data.providerId is string
+                    && request.resource.data.rating is number
+                    && request.resource.data.rating >= 1
+                    && request.resource.data.rating <= 5;
+      allow update, delete: if true;
+    }
+
+    // OTP Sessions collection: temporary OTP sessions
+    match /otpSessions/{sessionId} {
+      allow read: if true;
+      allow create: if request.resource.data.phone is string
+                    && request.resource.data.otp is string;
+      allow update, delete: if true;
+    }
+
+    // Test collection for connectivity checks
+    match /test/{testId} {
+      allow read: if true;
+    }
+
+    // Default deny for any other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

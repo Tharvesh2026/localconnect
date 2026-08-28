@@ -24,7 +24,25 @@ export function createSvgAvatar(
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
-export const INITIAL_PROVIDERS: Provider[] = [
+interface RawSeedProvider {
+  id: string;
+  fullName: string;
+  photoUrl: string;
+  phoneNumber: string;
+  skill: Provider['skill'];
+  customSkill?: string;
+  location: string;
+  availability: Provider['availability'];
+  status: Provider['status'];
+  bio?: string;
+  experienceYears?: number;
+  createdAt: string;
+  approvedAt?: string;
+  averageRating: number;
+  reviewCount: number;
+}
+
+const RAW_PROVIDERS: RawSeedProvider[] = [
   {
     id: 'prov-01',
     fullName: 'K. Murugan (முருகன்)',
@@ -86,8 +104,8 @@ export const INITIAL_PROVIDERS: Provider[] = [
     experienceYears: 14,
     createdAt: '2026-07-18T11:00:00.000Z',
     approvedAt: '2026-07-18T13:00:00.000Z',
-    averageRating: 5.0,
-    reviewCount: 2,
+    averageRating: 4.9,
+    reviewCount: 3,
   },
   {
     id: 'prov-05',
@@ -107,22 +125,6 @@ export const INITIAL_PROVIDERS: Provider[] = [
   },
   {
     id: 'prov-06',
-    fullName: 'M. Muthu (முத்து)',
-    photoUrl: createSvgAvatar('MM', '#c2410c', '#ffffff', '🛺'),
-    phoneNumber: '9629034567',
-    skill: 'Auto Driver',
-    location: 'Tiruvannamalai (திருவண்ணாமலை)',
-    availability: 'Available Now',
-    status: 'approved',
-    bio: '24/7 Girivalam rounds, local town trips, railway station drops, and emergency hospital trips. Honest fair pricing.',
-    experienceYears: 10,
-    createdAt: '2026-07-22T07:30:00.000Z',
-    approvedAt: '2026-07-22T08:00:00.000Z',
-    averageRating: 4.8,
-    reviewCount: 3,
-  },
-  {
-    id: 'prov-07',
     fullName: 'P. Kannan (கண்ணன்)',
     photoUrl: createSvgAvatar('PK', '#4338ca', '#ffffff', '⚡'),
     phoneNumber: '9444156789',
@@ -134,11 +136,11 @@ export const INITIAL_PROVIDERS: Provider[] = [
     experienceYears: 7,
     createdAt: '2026-07-25T11:20:00.000Z',
     approvedAt: '2026-07-25T12:00:00.000Z',
-    averageRating: 4.7,
-    reviewCount: 2,
+    averageRating: 4.8,
+    reviewCount: 3,
   },
   {
-    id: 'prov-08',
+    id: 'prov-07',
     fullName: 'A. Anitha (அனிதா)',
     photoUrl: createSvgAvatar('AA', '#0f766e', '#ffffff', '🧵'),
     phoneNumber: '9841278901',
@@ -151,10 +153,10 @@ export const INITIAL_PROVIDERS: Provider[] = [
     createdAt: '2026-07-28T14:00:00.000Z',
     approvedAt: '2026-07-28T15:30:00.000Z',
     averageRating: 4.8,
-    reviewCount: 2,
+    reviewCount: 3,
   },
   {
-    id: 'prov-09',
+    id: 'prov-08',
     fullName: 'V. Saravanan (சரவணன்)',
     photoUrl: createSvgAvatar('VS', '#1e40af', '#ffffff', '🔧'),
     phoneNumber: '9750089123',
@@ -167,40 +169,49 @@ export const INITIAL_PROVIDERS: Provider[] = [
     createdAt: '2026-08-01T10:00:00.000Z',
     approvedAt: '2026-08-01T11:15:00.000Z',
     averageRating: 4.8,
-    reviewCount: 2,
+    reviewCount: 3,
   },
-  // Pending demo providers for Admin validation
   {
-    id: 'prov-10',
+    id: 'prov-09',
     fullName: 'G. Balaji (பாலாஜி)',
     photoUrl: createSvgAvatar('GB', '#78350f', '#ffffff', '🪚'),
     phoneNumber: '9894011223',
     skill: 'Carpenter',
     location: 'Pollachi (பொள்ளாச்சி)',
     availability: 'Available Today',
-    status: 'pending',
+    status: 'approved',
     bio: 'Plywood woodwork, cupboard hinges, dining table polishing, and antique furniture restoration.',
-    experienceYears: 5,
-    createdAt: '2026-08-26T16:00:00.000Z',
-    averageRating: 0,
-    reviewCount: 0,
+    experienceYears: 10,
+    createdAt: '2026-08-05T16:00:00.000Z',
+    approvedAt: '2026-08-05T17:30:00.000Z',
+    averageRating: 4.9,
+    reviewCount: 2,
   },
   {
-    id: 'prov-11',
-    fullName: 'D. Arumugam (ஆறுமுகம்)',
-    photoUrl: createSvgAvatar('DA', '#b91c1c', '#ffffff', '🛺'),
-    phoneNumber: '9443199887',
-    skill: 'Auto Driver',
-    location: 'Madurai (மதுரை)',
+    id: 'prov-10',
+    fullName: 'S. Sundaram Master (சுந்தரம் மாஸ்டர்)',
+    photoUrl: createSvgAvatar('SM', '#065f46', '#ffffff', '📚'),
+    phoneNumber: '9486123450',
+    skill: 'Tutor',
+    location: 'Dindigul (திண்டுக்கல்)',
     availability: 'Available Now',
-    status: 'pending',
-    bio: 'Meenakshi Amman temple zone passenger auto, parcel delivery, school pickup drops.',
-    experienceYears: 8,
-    createdAt: '2026-08-27T08:30:00.000Z',
-    averageRating: 0,
-    reviewCount: 0,
+    status: 'approved',
+    bio: 'Retired government school Headmaster. English grammar, spoken English, and Tamil literature coaching.',
+    experienceYears: 25,
+    createdAt: '2026-08-10T08:30:00.000Z',
+    approvedAt: '2026-08-10T10:00:00.000Z',
+    averageRating: 4.9,
+    reviewCount: 3,
   },
 ];
+
+export const INITIAL_PROVIDERS: Provider[] = RAW_PROVIDERS.map((p) => ({
+  ...p,
+  name: p.fullName,
+  phone: p.phoneNumber,
+  isVisible: true,
+  isPublicVisible: true,
+}));
 
 export const INITIAL_REVIEWS: Review[] = [
   {
@@ -293,6 +304,14 @@ export const INITIAL_REVIEWS: Review[] = [
   },
   {
     id: 'rev-12',
+    providerId: 'prov-04',
+    rating: 4.8,
+    comment: 'Replaced wooden window frame louvers quickly before the monsoon rain.',
+    reviewerName: 'Meyyappan (மெய்யப்பன்)',
+    createdAt: '2026-08-14T10:00:00.000Z',
+  },
+  {
+    id: 'rev-13',
     providerId: 'prov-05',
     rating: 5,
     comment: 'My daughter was scared of 10th standard maths. After Kavitha teacher coaching, she scored 94%!',
@@ -300,7 +319,7 @@ export const INITIAL_REVIEWS: Review[] = [
     createdAt: '2026-07-27T18:00:00.000Z',
   },
   {
-    id: 'rev-13',
+    id: 'rev-14',
     providerId: 'prov-05',
     rating: 5,
     comment: 'Patient teaching, provides daily practice worksheets. Very dedicated.',
@@ -308,7 +327,7 @@ export const INITIAL_REVIEWS: Review[] = [
     createdAt: '2026-08-04T19:30:00.000Z',
   },
   {
-    id: 'rev-14',
+    id: 'rev-15',
     providerId: 'prov-05',
     rating: 5,
     comment: 'Best teacher in Tenkasi area for school students.',
@@ -316,64 +335,56 @@ export const INITIAL_REVIEWS: Review[] = [
     createdAt: '2026-08-15T16:00:00.000Z',
   },
   {
-    id: 'rev-15',
-    providerId: 'prov-06',
-    rating: 5,
-    comment: 'Took our family for night Girivalam safely. Driven carefully and very helpful.',
-    reviewerName: 'Ramakrishnan (ராமகிருஷ்ணன்)',
-    createdAt: '2026-07-30T22:15:00.000Z',
-  },
-  {
     id: 'rev-16',
     providerId: 'prov-06',
-    rating: 5,
-    comment: 'Arrived at 4:30 AM on time for railway station train departure.',
-    reviewerName: 'Senthil (செந்தில்)',
-    createdAt: '2026-08-06T05:30:00.000Z',
-  },
-  {
-    id: 'rev-17',
-    providerId: 'prov-06',
-    rating: 4.5,
-    comment: 'Clean auto rickshaw and transparent fair charge.',
-    reviewerName: 'Anbarasan (அன்பரசன்)',
-    createdAt: '2026-08-18T13:00:00.000Z',
-  },
-  {
-    id: 'rev-18',
-    providerId: 'prov-07',
     rating: 4.5,
     comment: 'Prompt ceiling fan wiring installation in Kumbakonam.',
     reviewerName: 'Vaidyanathan (வைத்தியநாதன்)',
     createdAt: '2026-08-01T15:20:00.000Z',
   },
   {
-    id: 'rev-19',
-    providerId: 'prov-07',
+    id: 'rev-17',
+    providerId: 'prov-06',
     rating: 5,
     comment: 'Honest technician. Repaired starter coil without unnecessary parts change.',
     reviewerName: 'Balamurugan (பாலமுருகன்)',
     createdAt: '2026-08-12T11:00:00.000Z',
   },
   {
-    id: 'rev-20',
-    providerId: 'prov-08',
+    id: 'rev-18',
+    providerId: 'prov-06',
+    rating: 4.8,
+    comment: 'Installed sub-meter and repaired distribution board safely.',
+    reviewerName: 'Swaminathan (சுவாமிநாதன்)',
+    createdAt: '2026-08-20T16:15:00.000Z',
+  },
+  {
+    id: 'rev-19',
+    providerId: 'prov-07',
     rating: 5,
     comment: 'Stitched school uniform sets for my two children in two days before school reopening.',
     reviewerName: 'Poongodi (பூங்கொடி)',
     createdAt: '2026-08-03T16:30:00.000Z',
   },
   {
-    id: 'rev-21',
-    providerId: 'prov-08',
+    id: 'rev-20',
+    providerId: 'prov-07',
     rating: 4.8,
-    comment: 'Neat stitching and very friendly customer service.',
+    comment: 'Neat stitching and very friendly customer service in Chengalpattu.',
     reviewerName: 'Revathi (ரேவதி)',
     createdAt: '2026-08-16T12:15:00.000Z',
   },
   {
+    id: 'rev-21',
+    providerId: 'prov-07',
+    rating: 4.6,
+    comment: 'Fast alteration of ladies suits and blouse fitting done same day.',
+    reviewerName: 'Kalyani (கல்யாணி)',
+    createdAt: '2026-08-22T14:40:00.000Z',
+  },
+  {
     id: 'rev-22',
-    providerId: 'prov-09',
+    providerId: 'prov-08',
     rating: 5,
     comment: 'Fixed bathroom mixer tap and cleared drainage line smoothly.',
     reviewerName: 'Dhanalakshmi (தனலட்சுமி)',
@@ -381,10 +392,58 @@ export const INITIAL_REVIEWS: Review[] = [
   },
   {
     id: 'rev-23',
-    providerId: 'prov-09',
+    providerId: 'prov-08',
     rating: 4.5,
     comment: 'Quick and reliable plumbing service in Thanjavur.',
     reviewerName: 'Nagarajan (நாகராஜன்)',
     createdAt: '2026-08-20T17:40:00.000Z',
+  },
+  {
+    id: 'rev-24',
+    providerId: 'prov-08',
+    rating: 5,
+    comment: 'Installed overhead water tank bypass valve properly. No leaks.',
+    reviewerName: 'Saradha (சாரதா)',
+    createdAt: '2026-08-23T11:20:00.000Z',
+  },
+  {
+    id: 'rev-25',
+    providerId: 'prov-09',
+    rating: 5,
+    comment: 'Replaced modular kitchen cabinet hinges and adjusted all doors perfectly.',
+    reviewerName: 'Sivakumar (சிவகுமார்)',
+    createdAt: '2026-08-10T14:30:00.000Z',
+  },
+  {
+    id: 'rev-26',
+    providerId: 'prov-09',
+    rating: 4.8,
+    comment: 'Great polish finish on our 20-year-old rosewood armchairs.',
+    reviewerName: 'Dhandapani (தண்டபாணி)',
+    createdAt: '2026-08-21T09:15:00.000Z',
+  },
+  {
+    id: 'rev-27',
+    providerId: 'prov-10',
+    rating: 5,
+    comment: 'Helped my son pass 12th standard English with 88 marks. Excellent teacher.',
+    reviewerName: 'Karuppasamy (கருப்பசாமி)',
+    createdAt: '2026-08-15T18:00:00.000Z',
+  },
+  {
+    id: 'rev-28',
+    providerId: 'prov-10',
+    rating: 5,
+    comment: 'Strict discipline yet very kind and encouraging. Wonderful grammar foundation.',
+    reviewerName: 'Anandhi (ஆனந்தி)',
+    createdAt: '2026-08-22T17:30:00.000Z',
+  },
+  {
+    id: 'rev-29',
+    providerId: 'prov-10',
+    rating: 4.8,
+    comment: 'Respected educator in Dindigul town. Very helpful for competitive school exams.',
+    reviewerName: 'Palaniappan (பழனியப்பன்)',
+    createdAt: '2026-08-25T11:45:00.000Z',
   },
 ];

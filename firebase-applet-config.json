@@ -1,0 +1,8 @@
+{
+  "projectId": "Your Project ID",
+  "appId": "APP_ID",
+  "apiKey": "API_KEY",
+  "authDomain": "AUTH_DOMAIN",
+  "storageBucket": "STORAGE_BUCKET",
+  "messagingSenderId": "MESSAGING_SENDER_ID"
+}

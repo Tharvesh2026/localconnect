@@ -387,8 +387,8 @@ export class Search {
   readonly locationsList = computed(() => this.storage.uniqueLocations());
 
   readonly filteredProviders = computed(() => {
-    // Only approved providers!
-    let list = this.storage.approvedProviders();
+    // Only approved and publicly visible providers!
+    let list = this.storage.publicApprovedProviders();
 
     const q = this.searchQuery().trim().toLowerCase();
     if (q) {

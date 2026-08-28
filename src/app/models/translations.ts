@@ -139,6 +139,64 @@ export interface Translations {
   availNow: string;
   availToday: string;
   availThisWeek: string;
+
+  // Worker Auth & Dashboard Navigation
+  navWorkerLogin: string;
+  navWorkerDashboard: string;
+
+  // Worker Login
+  workerLoginTitle: string;
+  workerLoginSubtitle: string;
+  workerPhonePrompt: string;
+  workerPhonePlaceholder: string;
+  workerSendOtpBtn: string;
+  workerOtpSentToastPrefix: string;
+  workerOtpSentToastSuffix: string;
+  workerOtpPrompt: string;
+  workerOtpPlaceholder: string;
+  workerVerifyOtpBtn: string;
+  workerResendOtp: string;
+  workerChangePhone: string;
+  workerDemoAccountsTitle: string;
+  workerErrorPhoneNotFound: string;
+  workerErrorInvalidOtp: string;
+  workerAutoFillOtpBtn: string;
+  workerLogout: string;
+  workerLoggedOutSuccess: string;
+  workerAlreadyLoggedIn: string;
+  workerGoToDashboard: string;
+  workerLoginWithDifferent: string;
+
+  // Worker Dashboard
+  workerDashboardTitle: string;
+  workerDashboardSubtitle: string;
+  workerProfileSummary: string;
+  workerApprovalApproved: string;
+  workerApprovalPending: string;
+  workerApprovalPendingNotice: string;
+  workerVisibilityToggleTitle: string;
+  workerVisibilityOn: string;
+  workerVisibilityOff: string;
+  workerVisibilityDesc: string;
+  workerStatsReviews: string;
+  workerStatsRating: string;
+  workerStatsStatus: string;
+  workerStatsVisibility: string;
+  workerVisibleLabel: string;
+  workerHiddenLabel: string;
+  workerEditTitle: string;
+  workerEditSubtitle: string;
+  workerAutoSavedBadge: string;
+  workerSavingBadge: string;
+  workerSaveBtn: string;
+  workerReviewsTitle: string;
+  workerNoReviews: string;
+  workerPublicViewBtn: string;
+  workerLoginRequired: string;
+  workerEditPhoneLabel: string;
+  workerEditAvailabilityLabel: string;
+  workerEditLocationLabel: string;
+  workerProfileUpdatedSuccess: string;
 }
 
 export const TRANSLATIONS: Record<Language, Translations> = {
@@ -280,7 +338,65 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     // Availability
     availNow: 'இப்போது கிடைக்கும் (Available Now)',
     availToday: 'இன்று கிடைக்கும் (Available Today)',
-    availThisWeek: 'இந்த வாரம் கிடைக்கும் (Available This Week)'
+    availThisWeek: 'இந்த வாரம் கிடைக்கும் (Available This Week)',
+
+    // Worker Auth & Dashboard Navigation
+    navWorkerLogin: 'தொழிலாளர் உள்நுழைவு',
+    navWorkerDashboard: 'எனது பலகை',
+
+    // Worker Login
+    workerLoginTitle: 'சேவை வழங்குநர் உள்நுழைவு (OTP)',
+    workerLoginSubtitle: 'உங்கள் சேவை விவரங்கள், கிடைக்கும் நிலை மற்றும் மதிப்புரைகளை நிர்வகியுங்கள்',
+    workerPhonePrompt: 'பதிவு செய்யப்பட்ட கைபேசி எண்',
+    workerPhonePlaceholder: '10 இலக்க தொலைபேசி எண் உள்ளிடவும்',
+    workerSendOtpBtn: 'OTP குறியீடு பெறுக',
+    workerOtpSentToastPrefix: 'உங்கள் OTP: ',
+    workerOtpSentToastSuffix: ' — டெமோ நோக்கத்திற்காக, இது SMS-க்கு பதிலாக இங்கு திரையிலேயே காட்டப்படுகிறது',
+    workerOtpPrompt: '4 இலக்க OTP சரிபார்ப்புக் குறியீடு',
+    workerOtpPlaceholder: '4 இலக்க எண்',
+    workerVerifyOtpBtn: 'OTP சரிபார்த்து உள்நுழைக',
+    workerResendOtp: 'புதிய OTP அனுப்புக',
+    workerChangePhone: 'தொலைபேசி எண்ணை மாற்றுக',
+    workerDemoAccountsTitle: 'டெமோ சோதனைக் கணக்குகள் (தானாக நிரப்ப அழுத்தவும்):',
+    workerErrorPhoneNotFound: 'இந்த கைபேசி எண்ணில் எந்த வழங்குநரும் பதிவு செய்யப்படவில்லை. தயவுசெய்து எண்ணைச் சரிபார்க்கவும் அல்லது புதிய சேவை வழங்குநராகப் பதிவு செய்யவும்.',
+    workerErrorInvalidOtp: 'தவறான OTP! திரையில் காட்டப்பட்டுள்ள 4 இலக்கக் குறியீட்டைச் சரியாக உள்ளிடவும்.',
+    workerAutoFillOtpBtn: 'OTP-ஐ தானாக நிரப்புக',
+    workerLogout: 'வெளியேறு (Logout)',
+    workerLoggedOutSuccess: 'வெற்றிகரமாக வெளியேறிவிட்டீர்கள்.',
+    workerAlreadyLoggedIn: 'நீங்கள் ஏற்கனவே உள்நுழைந்துள்ளீர்கள்',
+    workerGoToDashboard: 'எனது பலகைக்குச் செல்க',
+    workerLoginWithDifferent: 'வேறு எண்ணில் உள்நுழைக',
+
+    // Worker Dashboard
+    workerDashboardTitle: 'தொழிலாளர் கட்டுப்பாட்டுப் பலகை',
+    workerDashboardSubtitle: 'சுயவிவரம், பொதுத் தேடல் பார்வை நிலை மற்றும் வாடிக்கையாளர் மதிப்புரைகளை நிர்வகியுங்கள்',
+    workerProfileSummary: 'சுயவிவர சுருக்கம்',
+    workerApprovalApproved: 'அங்கீகரிக்கப்பட்டது (Approved)',
+    workerApprovalPending: 'ஒப்புதல் நிலுவையில் (Pending)',
+    workerApprovalPendingNotice: 'உங்கள் சுயவிவரம் ஊர் நிர்வாகியின் ஒப்புதலுக்காக நிலுவையில் உள்ளது. எனினும் உங்கள் தகவல்களை இப்போதே புதுப்பிக்கலாம்.',
+    workerVisibilityToggleTitle: 'பொதுத் தேடல் பார்வை நிலை (Search Visibility)',
+    workerVisibilityOn: 'இப்போது கிடைக்கும் (பொதுத் தேடலில் தோன்றும்)',
+    workerVisibilityOff: 'தற்போது கிடைக்கவில்லை (பொதுத் தேடலில் மறைக்கப்படும்)',
+    workerVisibilityDesc: '"தற்போது கிடைக்கவில்லை" என மாற்றினால், உங்கள் கணக்கு நிர்வாகியால் அங்கீகரிக்கப்பட்டிருந்தாலும் பொதுத் தேடலில் தற்காலிகமாக மறைக்கப்படும்.',
+    workerStatsReviews: 'மொத்த மதிப்புரைகள்',
+    workerStatsRating: 'சராசரி மதிப்பீடு',
+    workerStatsStatus: 'சுயவிவர நிலை',
+    workerStatsVisibility: 'பட்டியல் நிலை',
+    workerVisibleLabel: 'பார்வையில் உள்ளது',
+    workerHiddenLabel: 'மறைக்கப்பட்டுள்ளது',
+    workerEditTitle: 'சுயவிவரத்தைத் திருத்தவும்',
+    workerEditSubtitle: 'தொலைபேசி எண், கிடைக்கும் நிலை, ஊர் ஆகியவற்றை மாற்றலாம் — மறு ஒப்புதல் தேவையின்றி உடனே தானாகச் சேமிக்கப்படும்.',
+    workerAutoSavedBadge: 'உடனே தானாகச் சேமிக்கப்பட்டது',
+    workerSavingBadge: 'சேமிக்கப்படுகிறது...',
+    workerSaveBtn: 'விவரங்களைச் சேமி',
+    workerReviewsTitle: 'எனக்கு வந்த வாடிக்கையாளர் மதிப்புரைகள்',
+    workerNoReviews: 'இதுவரை மதிப்புரைகள் எதுவும் வரவில்லை. ஊர் மக்கள் உங்கள் சேவையை மதிப்பிடும்போது இங்கே தோன்றும்.',
+    workerPublicViewBtn: 'பொதுப் பட்டியலில் காண்க',
+    workerLoginRequired: 'உங்கள் பலகையை அணுக பதிவு செய்யப்பட்ட கைபேசி எண்ணுடன் உள்நுழையவும்.',
+    workerEditPhoneLabel: 'கைபேசி / தொலைபேசி எண்',
+    workerEditAvailabilityLabel: 'கிடைக்கும் நிலை',
+    workerEditLocationLabel: 'ஊர் அல்லது நகரம்',
+    workerProfileUpdatedSuccess: 'சுயவிவர விவரங்கள் வெற்றிகரமாகப் புதுப்பிக்கப்பட்டன!'
   },
   en: {
     appName: 'LocalConnect',
@@ -420,6 +536,64 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     // Availability
     availNow: 'Available Now',
     availToday: 'Available Today',
-    availThisWeek: 'Available This Week'
+    availThisWeek: 'Available This Week',
+
+    // Worker Auth & Dashboard Navigation
+    navWorkerLogin: 'Worker Login',
+    navWorkerDashboard: 'My Dashboard',
+
+    // Worker Login
+    workerLoginTitle: 'Worker Login (OTP)',
+    workerLoginSubtitle: 'Access and manage your provider profile, public visibility, and client reviews',
+    workerPhonePrompt: 'Registered Mobile Number',
+    workerPhonePlaceholder: 'Enter 10-digit registered number',
+    workerSendOtpBtn: 'Send OTP Code',
+    workerOtpSentToastPrefix: 'Your OTP is ',
+    workerOtpSentToastSuffix: ' — for demo purposes, this is shown here instead of sent via SMS',
+    workerOtpPrompt: 'Enter 4-digit Verification Code',
+    workerOtpPlaceholder: '4-digit OTP',
+    workerVerifyOtpBtn: 'Verify OTP & Sign In',
+    workerResendOtp: 'Resend New OTP',
+    workerChangePhone: 'Change Phone Number',
+    workerDemoAccountsTitle: 'Quick Demo Logins (Click to autofill):',
+    workerErrorPhoneNotFound: 'No service provider registered with this mobile number. Please check the number or register as a new provider.',
+    workerErrorInvalidOtp: 'Invalid OTP code entered. Please check the code shown in the banner and try again.',
+    workerAutoFillOtpBtn: 'Auto-Fill OTP',
+    workerLogout: 'Sign Out',
+    workerLoggedOutSuccess: 'You have been successfully signed out.',
+    workerAlreadyLoggedIn: 'You are currently signed in',
+    workerGoToDashboard: 'Open Worker Dashboard',
+    workerLoginWithDifferent: 'Sign in with another number',
+
+    // Worker Dashboard
+    workerDashboardTitle: 'Worker Dashboard',
+    workerDashboardSubtitle: 'Manage your profile, real-time availability, and client reviews',
+    workerProfileSummary: 'Profile Summary',
+    workerApprovalApproved: 'Approved & Active',
+    workerApprovalPending: 'Pending Village Admin Review',
+    workerApprovalPendingNotice: 'Your profile is currently undergoing admin review. You can still update details and manage your settings now.',
+    workerVisibilityToggleTitle: 'Public Search Visibility',
+    workerVisibilityOn: 'Available (Visible in Public Search)',
+    workerVisibilityOff: 'Not Available Right Now (Hidden from Search)',
+    workerVisibilityDesc: 'When set to "Not Available Right Now", your profile is hidden from public village directory searches even if approved.',
+    workerStatsReviews: 'Total Reviews',
+    workerStatsRating: 'Average Rating',
+    workerStatsStatus: 'Profile Status',
+    workerStatsVisibility: 'Search Visibility',
+    workerVisibleLabel: 'Publicly Visible',
+    workerHiddenLabel: 'Hidden from Search',
+    workerEditTitle: 'Edit Profile Details',
+    workerEditSubtitle: 'Update phone number, availability, and location — auto-saves immediately without needing re-approval.',
+    workerAutoSavedBadge: 'Auto-saved to local storage',
+    workerSavingBadge: 'Saving changes...',
+    workerSaveBtn: 'Save Details',
+    workerReviewsTitle: 'Client Reviews & Feedback',
+    workerNoReviews: 'No reviews received yet. When village residents review your services, they will appear here.',
+    workerPublicViewBtn: 'Preview in Public Directory',
+    workerLoginRequired: 'Please log in with your registered phone number to access your worker dashboard.',
+    workerEditPhoneLabel: 'Mobile / Phone Number',
+    workerEditAvailabilityLabel: 'Current Availability',
+    workerEditLocationLabel: 'Village or Town Name',
+    workerProfileUpdatedSuccess: 'Profile details updated successfully!'
   }
 };

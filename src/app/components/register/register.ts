@@ -502,7 +502,7 @@ export class Register {
     this.uploadedPhotoBase64.set(null);
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     this.submitted.set(true);
     this.formErrorMessage.set(null);
 
@@ -528,32 +528,43 @@ export class Register {
 
     this.isSubmitting.set(true);
 
-    const result = this.storage.addProvider({
-      fullName: val.fullName || '',
-      photoUrl: finalPhoto,
-      phoneNumber: val.phoneNumber || '',
-      skill: val.skill as SkillType,
-      customSkill: val.customSkill || undefined,
-      location: val.location || '',
-      availability: val.availability as Availability,
-      experienceYears: val.experienceYears || undefined,
-      bio: val.bio || undefined,
-    });
+    try {
+      const result = await this.storage.addProvider({
+        fullName: val.fullName || '',
+        photoUrl: finalPhoto,
+        phoneNumber: val.phoneNumber || '',
+        skill: val.skill as SkillType,
+        customSkill: val.customSkill || undefined,
+        location: val.location || '',
+        availability: val.availability as Availability,
+        experienceYears: val.experienceYears || undefined,
+        bio: val.bio || undefined,
+      });
 
-    this.isSubmitting.set(false);
+      this.isSubmitting.set(false);
 
-    if (!result.success) {
-      if (result.error === 'duplicate_phone') {
-        this.formErrorMessage.set(this.t().errorPhoneDuplicate);
-      } else {
-        this.formErrorMessage.set(this.t().errorPhoneInvalid);
+      if (!result.success) {
+        if (result.error === 'duplicate_phone') {
+          this.formErrorMessage.set(this.t().errorPhoneDuplicate);
+        } else if (result.error === 'network_error') {
+          this.formErrorMessage.set(
+            'Unable to connect to database. Please check your internet connection and try again.'
+          );
+        } else {
+          this.formErrorMessage.set(this.t().errorPhoneInvalid);
+        }
+        return;
       }
-      return;
-    }
 
-    // Success!
-    this.createdProvider.set(result.provider || null);
-    this.submittedSuccess.set(true);
+      // Success!
+      this.createdProvider.set(result.provider || null);
+      this.submittedSuccess.set(true);
+    } catch {
+      this.isSubmitting.set(false);
+      this.formErrorMessage.set(
+        'A connection error occurred. Please try again in a moment.'
+      );
+    }
   }
 
   resetFormState(): void {

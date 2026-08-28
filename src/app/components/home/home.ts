@@ -336,13 +336,23 @@ import {ReviewModal} from '../review-modal/review-modal';
               <span class="w-2 h-2 rounded-full bg-[#E6F4EA]"></span>
               <span>LocalConnect • {{ t().offlineReady }} • Community Trust Platform</span>
             </div>
-            <a
-              id="footer-register-link"
-              routerLink="/register"
-              class="px-5 py-2.5 bg-white text-[#5A5A40] hover:bg-[#F5F5F0] font-bold text-xs sm:text-sm rounded-xl shadow-sm transition-colors cursor-pointer"
-            >
-              {{ t().homeRegisterBtn }} →
-            </a>
+            <div class="flex items-center gap-2.5">
+              <a
+                id="footer-worker-link"
+                [routerLink]="storage.loggedInProviderId() ? '/worker-dashboard' : '/worker-login'"
+                class="px-4 py-2.5 bg-white/15 text-white hover:bg-white/25 font-semibold text-xs sm:text-sm rounded-xl border border-white/20 transition-colors cursor-pointer flex items-center gap-1.5"
+              >
+                <mat-icon class="text-sm">badge</mat-icon>
+                <span>{{ storage.loggedInProviderId() ? t().navWorkerDashboard : t().navWorkerLogin }}</span>
+              </a>
+              <a
+                id="footer-register-link"
+                routerLink="/register"
+                class="px-5 py-2.5 bg-white text-[#5A5A40] hover:bg-[#F5F5F0] font-bold text-xs sm:text-sm rounded-xl shadow-sm transition-colors cursor-pointer"
+              >
+                {{ t().homeRegisterBtn }} →
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -359,7 +369,7 @@ import {ReviewModal} from '../review-modal/review-modal';
 })
 export class Home {
   private readonly router = inject(Router);
-  private readonly storage = inject(LocalStorage);
+  readonly storage = inject(LocalStorage);
   readonly translation = inject(Translation);
 
   readonly t = () => this.translation.t();
@@ -367,11 +377,11 @@ export class Home {
   readonly contactRevealedId = signal<string | null>(null);
   readonly activeReviewProvider = signal<Provider | null>(null);
 
-  readonly approvedCount = computed(() => this.storage.approvedProviders().length);
+  readonly approvedCount = computed(() => this.storage.publicApprovedProviders().length);
 
   readonly featuredProviders = computed(() => {
     return this.storage
-      .approvedProviders()
+      .publicApprovedProviders()
       .slice(0, 6);
   });
 
@@ -389,7 +399,7 @@ export class Home {
   ];
 
   getSkillCount(skill: SkillType): number {
-    return this.storage.approvedProviders().filter((p) => p.skill === skill).length;
+    return this.storage.publicApprovedProviders().filter((p) => p.skill === skill).length;
   }
 
   navigateToCategory(skill: SkillType): void {

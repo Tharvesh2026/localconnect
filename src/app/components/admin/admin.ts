@@ -430,26 +430,26 @@ export class Admin {
     this.storage.logoutAdmin();
   }
 
-  approve(providerId: string): void {
-    this.storage.approveProvider(providerId);
+  async approve(providerId: string): Promise<void> {
+    await this.storage.approveProvider(providerId);
     this.showActionMessage(this.t().adminApprovedSuccess);
   }
 
-  reject(providerId: string): void {
-    this.storage.rejectProvider(providerId);
+  async reject(providerId: string): Promise<void> {
+    await this.storage.rejectProvider(providerId);
     this.showActionMessage(this.t().adminRejectedSuccess);
   }
 
-  removeProvider(providerId: string): void {
+  async removeProvider(providerId: string): Promise<void> {
     if (confirm('Permanently remove this provider and reviews?')) {
-      this.storage.deleteProvider(providerId);
+      await this.storage.deleteProvider(providerId);
       this.showActionMessage('Provider removed permanently.');
     }
   }
 
-  onResetSeedClick(): void {
+  async onResetSeedClick(): Promise<void> {
     if (confirm(this.t().adminResetSeedConfirm)) {
-      this.storage.resetToSeedData();
+      await this.storage.resetToSeedData();
       this.showActionMessage(this.t().adminResetSeedSuccess);
     }
   }

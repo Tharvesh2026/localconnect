@@ -25,18 +25,30 @@ export interface Review {
 
 export interface Provider {
   id: string;
-  fullName: string;
+  name: string; // Firestore field
+  fullName: string; // Compatibility alias
   photoUrl: string; // base64 data URL or SVG avatar
-  phoneNumber: string;
+  phone: string; // Firestore field
+  phoneNumber: string; // Compatibility alias
   skill: SkillType;
   customSkill?: string; // If skill === 'Other'
   location: string; // Village or town name
   availability: Availability;
   status: ProviderStatus;
+  isVisible: boolean; // Firestore field
+  isPublicVisible: boolean; // Compatibility alias
   bio?: string;
   experienceYears?: number;
   createdAt: string;
   approvedAt?: string;
   averageRating: number;
   reviewCount: number;
+}
+
+export interface OtpSession {
+  id: string;
+  phone: string;
+  otp: string;
+  createdAt: string;
+  expiresAt: string;
 }
