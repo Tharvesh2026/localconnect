@@ -1,0 +1,39 @@
+<div class="min-h-screen flex flex-col bg-[#F5F5F0] text-[#1A1A1A]">
+  <app-header />
+  
+  <main class="flex-1">
+    <router-outlet />
+  </main>
+
+  <footer class="bg-white text-[#1A1A1A] border-t border-[#E0E0D5] py-8 px-4 sm:px-6 lg:px-8 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#5A5A40] text-white flex items-center justify-center font-bold shadow-xs">
+          <mat-icon class="text-xl">handyman</mat-icon>
+        </div>
+        <div>
+          <h3 class="font-bold text-[#1A1A1A] text-base leading-tight">LocalConnect</h3>
+          <p class="text-xs text-[#5A5A40] font-medium">{{ t().appSubName }}</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-6 text-xs text-[#5A5A40] font-semibold">
+        <a routerLink="/" class="hover:text-[#1A1A1A] transition-colors cursor-pointer">{{ t().navHome }}</a>
+        <a routerLink="/search" class="hover:text-[#1A1A1A] transition-colors cursor-pointer">{{ t().navSearch }}</a>
+        <a routerLink="/register" class="hover:text-[#1A1A1A] transition-colors cursor-pointer">{{ t().navRegister }}</a>
+        <a routerLink="/admin" class="hover:text-[#1A1A1A] transition-colors cursor-pointer">{{ t().navAdmin }}</a>
+      </div>
+
+      <div class="text-xs text-[#8E8E80] space-y-1">
+        <p class="flex items-center justify-center md:justify-end gap-1.5 text-[#1E7E34] font-semibold">
+          <span class="w-2 h-2 rounded-full bg-[#1E7E34]"></span>
+          {{ t().offlineReady }}
+        </p>
+        <p class="text-[#71716A]">
+          Village & Small Town Community Services Directory
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>
+

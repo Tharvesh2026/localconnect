@@ -1,0 +1,6 @@
+{
+  "name": "LocalConnect",
+  "description": "Village & small-town local services directory connecting residents with verified plumbers, electricians, tailors, tutors, carpenters, and drivers in Tamil and English.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
